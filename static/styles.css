@@ -148,3 +148,10 @@ textarea{
 	margin-left: 20%;
 	margin-right: 20%;
 }
+
+@media screen and (max-width: 600px){
+	#content{
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
