@@ -23,6 +23,12 @@ html,body{
 	height: 56px;
 	margin: 0;
 	background-color: var(--dark);
+	position: fixed;
+	top: 0;
+}
+
+.exp{
+	height: 56px;
 }
 
 ul{
@@ -124,11 +130,6 @@ textarea{
 	height: 400px;
 }
 
-footer{
-	height: 50%;
-	background: var(--dark)
-}
-
 .footer-columns{
 	width: 33.33%;
 	float: left;
@@ -141,4 +142,9 @@ footer{
 	border: none;
 	color: white;
 	cursor: pointer;
+}
+
+#content{
+	margin-left: 20%;
+	margin-right: 20%;
 }

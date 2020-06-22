@@ -1,8 +1,15 @@
 from flask import Flask, render_template,request,redirect
 import redis
+import os
+
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except Exception as e:
+    pass
 
 app=Flask(__name__)
-r=redis.Redis()
+r=redis.Redis.from_url(os.getenv("DB"))
 
 def get_db():
     keys=r.keys()
