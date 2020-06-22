@@ -7,7 +7,7 @@ html,body{
 	height: 100%;
 	margin: 0;
 	top: 0;
-	/*background: #ffdbd1;*/
+	font-family: lato;
 }
 
 .nav-container{
@@ -95,4 +95,13 @@ ul{
 
 .card-title{
 	border-bottom: 2px solid var(--dark);
+}
+
+.read-title{
+	font-size: 52px;
+}
+
+.read-text{
+	margin-left: 20%;
+	margin-right: 20%;
 }
