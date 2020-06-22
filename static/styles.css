@@ -1,0 +1,98 @@
+:root{
+	--dark: #343a40;
+	--blue: #23c6cc;
+}
+
+html,body{
+	height: 100%;
+	margin: 0;
+	top: 0;
+	/*background: #ffdbd1;*/
+}
+
+.nav-container{
+	width: 100%;
+	height: 56px;
+	margin: 0;
+	background-color: var(--dark);
+}
+
+ul{
+	margin: 0;
+}
+
+.link{
+	float: left;
+	padding: 10px;
+	list-style: none;
+	background: var(--dark);
+	margin-right: 10px;
+	text-decoration: none;
+	color: white;
+	float: right;
+	font-size: 22px;
+}
+
+.link:hover{
+	background: #343a40;
+	color: var(--blue);
+}
+
+#title{
+	text-decoration: none;
+	color: white;
+	margin: 0;
+	font-size: 30px;
+	margin-left: 10px;
+	padding-top: 10px;
+	float: left;
+}
+
+#title:hover{
+	background: #343a40;
+	color: var(--blue);
+}
+
+.banner{
+	width: 100%;
+	background-color: gray;
+	height: 50%;
+	color: white;
+}
+.banner > a{
+	position: absolute;
+	color: white;
+	text-decoration: none;
+	font-size: 75px;
+	margin-top: 10%;
+	margin-left: 40%;
+}
+
+.banner > a:hover{
+	color: var(--blue)
+}
+.container{
+	margin-left: 25px;
+
+	margin-right: 10px;
+}
+.card{
+	float: left;
+	width: 25%;
+	padding: 25px;
+	margin-left: 25px;
+	margin-bottom: 10px;
+	text-decoration: none;
+	color: var(--dark);
+	background: white;
+	border: 2px solid var(--dark)
+}
+
+.card:hover{
+	color: white;
+	background: var(--dark);
+}
+
+.card-title{
+	border-bottom: 2px solid var(--dark);
+}
