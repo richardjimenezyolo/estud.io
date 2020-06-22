@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block body %}
+	<div class="container">
+		<center>
+			<form action="/add_post" method="POST">
+				<p style="font-size: 44px;font-family: lato;">Add:</p>
+				<h1>Post Name: </h1>
+				<input type="text" name="post-name" class="input-text" placeholder="Post Name...">
+				<h1>Description:</h1>
+				<input type="text" name="description" class="input-text" placeholder="Post Description">
+				<br>
+				<h1>Post</h1>
+				<textarea name="post" id="" cols="30" rows="10"></textarea>
+				<br>
+				<br>
+				<br>
+				<button class="button">Send</button>
+			</form>
+		</center>
+	</div>
+{% endblock body %}

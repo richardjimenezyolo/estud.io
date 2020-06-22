@@ -8,7 +8,7 @@
   <script>
 
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "/read_file", true);
+    xhr.open("GET", `/read_file?q={{ post }}`, true);
     xhr.send();
     
     xhr.onreadystatechange = function() {
