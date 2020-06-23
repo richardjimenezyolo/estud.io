@@ -1,6 +1,45 @@
 {% extends 'base.html' %}
 {% block body %}
 	<div class="container">
+
+		<div class="center">
+			<h1>Hello!</h1>
+		</div>
+
 		<a href="/logout">Log out</a>
+		<br>
+		<br>
+		<br>
+		<br>
+	
+		<h2>Posts You have written: </h2>
+
+		<div>
+			{% for i in posts %}
+			<a href="#" class="card" id="link-{{ i }}">
+			<div>
+				<h2 class="card-title" id="title-{{ i }}">Title</h2>
+				
+			</div>
+		</a>
+
+		<script>
+			var PostCard = "{{ i }}";
+
+			var card = PostCard.split("|")
+
+			// Card Name
+
+			var name = card[0].replace("post:","")
+
+			document.getElementById("title-{{ i }}").innerHTML = name
+
+			// Card Link
+
+			document.getElementById("link-{{ i }}").href = "/read?q="+name
+		</script>
+		{% endfor %}
+		</div>
+
 	</div>
 {% endblock body %}

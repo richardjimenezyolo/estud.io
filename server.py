@@ -50,13 +50,46 @@ def read():
     post_name="post:"+q
 
     by=r.hget(post_name,"by").decode().replace("user:","")
-    return render_template("read.html",post=q,by=by)
+    likes=r.hget(post_name, "pts").decode()
+    return render_template("read.html",post=q,by=by,likes=likes)
 
 @app.route("/read_file")
 def read_file():
     q=request.args.get("q")
     post_name="post:"+q
     return str(r.hget(post_name,"post").decode())
+
+
+########
+# LIKE #
+########
+@app.route("/like")
+def like():
+    post=request.args.get("post")
+
+    pts=r.hget("post:"+post, "pts")
+
+    pts=int(pts)
+
+    pts += 1
+
+    r.hset("post:"+post, "pts", pts)
+
+    return ""
+
+@app.route("/dislike")
+def dislike():
+    post=request.args.get("post")
+
+    pts=r.hget("post:"+post, "pts")
+
+    pts=int(pts)
+
+    pts -= 1
+
+    r.hset("post:"+post, "pts", pts)
+
+    return ""
 
 #######
 # ADD #
@@ -85,6 +118,7 @@ def upload_post():
     r.hset("post:"+post_name, "post", post)
     r.hset("post:"+post_name, "description", description)
     r.hset("post:"+post_name, "by", session["user"])
+    r.hset("post:"+post_name, "pts", 0)
 
     r.lpush("lts-posts:"+session["user"],"post:"+post_name)
 
@@ -109,16 +143,21 @@ def upload_img():
 @app.route("/profile")
 def profile():
     if "user" in session:
-        return render_template("profile.html")
+        posts=r.lrange("lts-posts:"+session["user"], 0, -1)
+
+        res_posts=[]
+
+        for i in posts:
+            res_posts.append(i.decode().replace("post:",""))
+
+        return render_template("profile.html",posts=res_posts)
+
 
     return redirect("/loggin")
 
-
-@app.route("/logout")
-def logout():
-    session.pop("user")
-    return redirect("/")
-
+##########
+# LOGGIN #
+##########
 @app.route("/loggin")
 def loggin():
     return render_template("loggin.html")
@@ -137,7 +176,14 @@ def loggin_post():
 
     return render_template("loggin.html",msg="User Name or Password incorrect")
 
+@app.route("/logout")
+def logout():
+    session.pop("user")
+    return redirect("/")
 
+############
+#  SIGN UP #
+############
 @app.route("/signup")
 def singup():
     return render_template("signup.html")

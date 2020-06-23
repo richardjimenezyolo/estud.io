@@ -1,7 +1,18 @@
 :root{
+	
+	/*
+	azul: 4876ff
+	negro grisáceo: 2b2825
+	*/
+
 	/*Blue*/
 	--dark: #343a40;
 	--blue: #23c6cc;
+	--bg: #d3d8de;
+
+	/* Frann*/
+	/*--blue: #4876ff;
+	--dark: #2b2825;*/
 /*
 	Green
 
@@ -22,7 +33,7 @@ html,body{
 	margin: 0;
 	top: 0;
 	font-family: lato;
-	background: #d3d8de;
+	background: var(--bg);
 	/*background: #c9cdd1;*/
 }
 
@@ -56,7 +67,6 @@ ul{
 }
 
 .link:hover{
-	background: #343a40;
 	color: var(--blue);
 }
 
@@ -77,6 +87,7 @@ ul{
 
 .banner{
 	width: 100%;
+	background: url("/static/logo.png") no-repeat center;
 	background-color: gray;
 	height: 50%;
 	color: white;
@@ -89,6 +100,7 @@ ul{
 	position: absolute;
 	margin-top: 10%;
 	left: 40%;
+	/*display: none;*/
 }
 
 #header:hover{
@@ -162,6 +174,27 @@ form{
 	text-align: center;
 }
 
+.center{
+	text-align: center;
+}
+
+.like-box{
+	position: fixed;
+	right: 0;
+	top: 50%;
+}
+
+.like{
+	border: none;
+	color: var(--dark);
+	background: var(--bg);
+
+}
+
+.like:hover{
+	color: var(--blue);
+}
+
 @media screen and (max-width: 600px){
 	#content{
 		margin-left: 0;
@@ -170,6 +203,7 @@ form{
 	#header{
 		left: unset;
 		position: unset;
+		display: inline;
 	}
 	.banner{
 		height: 20%;

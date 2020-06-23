@@ -1,14 +1,16 @@
 {% extends 'base.html' %}
-
 {% block body %}
-  <script src="static/js/read.js"></script>
   <script src="https://unpkg.com/showdown/dist/showdown.min.js"></script>
+  <script src="static/js/read.js"></script>
   <div class="container">
+  	<div class="like-box">
+  		<button onclick="like('{{ post }}')" class="material-icons like">thumb_up</button>
+  		{{ likes }}
+  		<button onclick="dislike('{{ post }}')" class="material-icons like">thumb_down</button>
+  	</div>
     <div id="content"></div>
     <p>Wirtten by: <a href="#">{{ by }}</a></p>
+    <!-- <p><i class="material-icons">thumb_up</i>{{ likes }}</p> -->
   </div>
-  <script>
-
-    read("{{ post }}")
-  </script>
+  <script>read("{{ post }}")</script>
 {% endblock body %}
