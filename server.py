@@ -1,6 +1,7 @@
-from flask import Flask, render_template,request,redirect
+from flask import Flask, render_template,request,redirect, session
 import redis
 import os
+import boto3
 
 try:
     from dotenv import load_dotenv
@@ -9,7 +10,10 @@ except Exception as e:
     pass
 
 app=Flask(__name__)
+app.config["SECRET_KEY"] = 'key'
 r=redis.Redis.from_url(os.getenv("DB"))
+s3_id=os.environ["AWSAccessKeyId"]
+s3_key=os.environ["AWSSecretKey"]
 
 def get_db():
     keys=r.keys()
@@ -28,7 +32,8 @@ def index():
     res=[]
     for i in test:
         if "post:" in i:
-            res.append(i+"|"+str(r.hget(i,"description").decode()))
+            if len(i) != len("post:"):
+                res.append(i+"|"+str(r.hget(i,"description").decode()))
 
     return render_template("index.html",list=res)
 
@@ -40,7 +45,9 @@ def index():
 def read():
     q=request.args.get("q")
     post_name="post:"+q
-    return render_template("read.html",post=q)
+
+    by=r.hget(post_name,"by").decode().replace("user:","")
+    return render_template("read.html",post=q,by=by)
 
 @app.route("/read_file")
 def read_file():
@@ -53,7 +60,11 @@ def read_file():
 #######
 @app.route("/add")
 def add():
-    return render_template("add.html")
+    if "user" in session:
+
+        return render_template("add.html")
+
+    return redirect("/loggin")
 
 @app.route("/add_post",methods=["POST"])
 def upload_post():
@@ -61,10 +72,72 @@ def upload_post():
     description=request.form.get("description")
     post=request.form.get("post")
 
+    db=get_db()
+
+    if "post:"+post_name in db:
+        return render_template("add.html",msg="Post Name Already taken!")
+
     r.hset("post:"+post_name, "post", post)
     r.hset("post:"+post_name, "description", description)
+    r.hset("post:"+post_name, "by", session["user"])
 
     return redirect("/")
+
+
+
+###########
+# PROFILE #
+###########
+@app.route("/profile")
+def profile():
+    if "user" in session:
+        return render_template("profile.html")
+
+    return redirect("/loggin")
+
+@app.route("/loggin")
+def loggin():
+    return render_template("loggin.html")
+
+@app.route("/loggin",methods=["POST"])
+def loggin_post():
+    name=request.form.get("name")
+    pwd=request.form.get("pwd")
+
+    db=get_db()
+
+    if "user:"+name in db:
+        if r.hget("user:"+name, "pwd").decode() == pwd:
+            session["user"]="user:"+name
+            return redirect("/")
+
+    return render_template("loggin.html",msg="User Name or Password incorrect")
+
+
+@app.route("/signup")
+def singup():
+    return render_template("signup.html")
+
+@app.route("/signup",methods=["POST"])
+def signup_post():
+    name=request.form.get("name")
+    pwd=request.form.get("pwd")
+
+    db=get_db()
+
+
+    if "user:"+name in db:
+        return render_template("signup.html",msg="User Name Already taken")
+
+
+    else:
+        r.hset("user:"+name, "pwd", pwd)
+        r.hset("user:"+name, "posts", "")
+        r.hset("user:"+name, "pts", 0)
+
+    return redirect("/loggin")
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)

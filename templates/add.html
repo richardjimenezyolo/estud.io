@@ -2,16 +2,13 @@
 {% block body %}
 	<div class="container">
 		<a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="blank">Markdown Cheat Sheet</a>
-		<center>
 			<form action="/add_post" method="POST">
+				<p style="color: red;"> {{ msg }} </p>
 				<p style="font-size: 44px;font-family: lato;">Add:</p>
 				<h1>Post Name: </h1>
 				<input type="text" name="post-name" class="input-text" placeholder="Post Name...">
 				<h1>Description:</h1>
 				<input type="text" name="description" class="input-text" placeholder="Post Description...">
-				<br>
-				<h1>Your Name:</h1>
-				<input type="text" name="name" class="input-text" placeholder="Your Name...">
 				<br>
 				<h1>Post</h1>
 				<textarea name="post" id="" cols="30" rows="10"></textarea>
@@ -20,6 +17,5 @@
 				<br>
 				<button class="button">Send</button>
 			</form>
-		</center>
 	</div>
 {% endblock body %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block body %}
+	<form action="/loggin" method="POST">
+		<a href="/signup">Sing Up</a>
+		<br>
+		<p style="color: red;">{{ msg }}</p>
+		<h1>Loggin: </h1>
+		<br>
+		<br>
+		<h2>User Name</h2>
+		<input type="text" class="input-text" name="name" placeholder="User Name...">
+		<br>
+		<h2>Password:</h2>
+		<input type="password" class="input-text" name="pwd" placeholder="Password...">
+		<br>
+		<br>
+		<br>
+		<button class="button">Loggin</button>
+	</form>
+{% endblock body %}

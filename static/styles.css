@@ -9,6 +9,14 @@
 	--dark: #2B2825;*/
 }
 
+a{
+	text-decoration: none;
+}
+
+a:hover{
+	color: var(--blue)
+}
+
 html,body{
 	height: 100%;
 	margin: 0;
@@ -72,17 +80,18 @@ ul{
 	background-color: gray;
 	height: 50%;
 	color: white;
+	text-align: center;
 }
-.banner > a{
-	position: absolute;
+#header{
 	color: white;
 	text-decoration: none;
 	font-size: 75px;
+	position: absolute;
 	margin-top: 10%;
-	margin-left: 40%;
+	left: 40%;
 }
 
-.banner > a:hover{
+#header:hover{
 	color: var(--blue)
 }
 .container{
@@ -149,9 +158,24 @@ textarea{
 	margin-right: 20%;
 }
 
+form{
+	text-align: center;
+}
+
 @media screen and (max-width: 600px){
 	#content{
 		margin-left: 0;
 		margin-right: 0;
+	}
+	#header{
+		left: unset;
+		position: unset;
+	}
+	.banner{
+		height: 20%;
+	}
+
+	.card{
+		width: 50%;
 	}
 }
