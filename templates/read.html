@@ -1,26 +1,14 @@
 {% extends 'base.html' %}
 
 {% block body %}
+  <script src="static/js/read.js"></script>
+  <script src="https://unpkg.com/showdown/dist/showdown.min.js"></script>
   <div class="container">
     <div id="content"></div>
     <p>Wirtten by: <a href="#">{{ by }}</a></p>
   </div>
-	<script src="https://unpkg.com/showdown/dist/showdown.min.js"></script>
   <script>
 
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", `/read_file?q={{ post }}`, true);
-    xhr.send();
-    
-    xhr.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        var response = this.responseText;
-        var converter = new showdown.Converter(),
-        text      = response,
-        html      = converter.makeHtml(text);
-
-        document.querySelector("#content").innerHTML = html
-      }
-    };
+    read("{{ post }}")
   </script>
 {% endblock body %}

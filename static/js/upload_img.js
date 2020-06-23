@@ -18,5 +18,3 @@ function UploadImg () {
 	ajax.open("POST", "/upload_img", true);
 	ajax.send(data);
 }
-
-console.log(document.cookie)

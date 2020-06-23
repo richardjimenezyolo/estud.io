@@ -113,6 +113,12 @@ def profile():
 
     return redirect("/loggin")
 
+
+@app.route("/logout")
+def logout():
+    session.pop("user")
+    return redirect("/")
+
 @app.route("/loggin")
 def loggin():
     return render_template("loggin.html")
