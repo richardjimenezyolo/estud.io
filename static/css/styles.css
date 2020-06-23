@@ -195,6 +195,17 @@ form{
 	color: var(--blue);
 }
 
+#up{
+	text-decoration: none;
+	color: white;
+	padding: 10px;
+	background: var(--dark);
+	position: fixed;
+	border-radius: 25px;
+	bottom: 3%;
+	right: 3%;
+}
+
 @media screen and (max-width: 600px){
 	#content{
 		margin-left: 0;
