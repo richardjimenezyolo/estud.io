@@ -2,6 +2,7 @@ from flask import Flask, render_template,request,redirect, session
 import redis
 import os
 import boto3
+import random
 
 try:
     from dotenv import load_dotenv
@@ -10,10 +11,12 @@ except Exception as e:
     pass
 
 app=Flask(__name__)
-app.config["SECRET_KEY"] = 'key'
 r=redis.Redis.from_url(os.getenv("DB"))
+app.config["SECRET_KEY"] = 'key'
 s3_id=os.environ["AWSAccessKeyId"]
 s3_key=os.environ["AWSSecretKey"]
+s3=boto3.client('s3',aws_access_key_id=s3_id,aws_secret_access_key=s3_key)
+
 
 def get_db():
     keys=r.keys()
@@ -72,6 +75,8 @@ def upload_post():
     description=request.form.get("description")
     post=request.form.get("post")
 
+
+
     db=get_db()
 
     if "post:"+post_name in db:
@@ -81,7 +86,20 @@ def upload_post():
     r.hset("post:"+post_name, "description", description)
     r.hset("post:"+post_name, "by", session["user"])
 
+    r.lpush("lts-posts:"+session["user"],"post:"+post_name)
+
     return redirect("/")
+
+
+@app.route("/upload_img",methods=["POST"])
+def upload_img():
+    print("uploading")
+    img=request.files['img']
+    fname=str(random.random())+".jpg"
+    img.save(os.path.join("static/imgs",fname))
+    s3.upload_file("static/imgs/"+fname,'estud-io','estud-io/'+fname,ExtraArgs={'ACL':'public-read'})
+
+    return fname
 
 
 

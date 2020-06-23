@@ -9,13 +9,13 @@
 	--dark: #2B2825;*/
 }
 
-a{
+/*a{
 	text-decoration: none;
 }
 
 a:hover{
 	color: var(--blue)
-}
+}*/
 
 html,body{
 	height: 100%;
