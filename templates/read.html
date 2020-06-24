@@ -4,14 +4,37 @@
   <script src="https://unpkg.com/showdown/dist/showdown.min.js"></script>
   <script src="static/js/read.js"></script>
   <div class="container">
+    <div id="content"></div>
+    <p>Wirtten by: <a href="/user?user={{ by }}">{{ by }}</a></p>
   	<div class="like-box">
   		<button onclick="like('{{ post }}')" class="material-icons like">thumb_up</button>
   		{{ likes }}
   		<button onclick="dislike('{{ post }}')" class="material-icons like">thumb_down</button>
   	</div>
-    <div id="content"></div>
-    <p>Wirtten by: <a href="#">{{ by }}</a></p>
-    <!-- <p><i class="material-icons">thumb_up</i>{{ likes }}</p> -->
+
+
+
+      <form id="comment">
+        <h2>Please leave a comment:</h2>
+        <textarea name="comment" cols="50" rows="2" id="text2"></textarea>
+        <br>
+      </form>
+      <div class="center">
+        <button class="button" onclick="SendComment('{{ post }}')">send</button>
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+
+      <h2>Comments:</h2>
+
+      <div id="comments">
+        <button class="button" onclick="ReadComments('{{ post }}')">Read Comments</button>
+      </div>
+
+
+
   </div>
   <script>read("{{ post }}")</script>
 {% endblock body %}

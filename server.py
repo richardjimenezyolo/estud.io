@@ -1,4 +1,4 @@
-from flask import Flask, render_template,request,redirect, session
+from flask import Flask, render_template,request,redirect, session, jsonify
 import redis
 import os
 import boto3
@@ -35,7 +35,7 @@ def index():
     res=[]
     for i in test:
         if "post:" in i:
-            if len(i) != len("post:"):
+            if len(i) != len("post:") and r.type(i) == b'hash':
                 res.append(i+"|"+str(r.hget(i,"description").decode()))
 
     return render_template("index.html",list=res)
@@ -122,7 +122,7 @@ def upload_post():
 
     r.lpush("lts-posts:"+session["user"],"post:"+post_name)
 
-    return redirect("/")
+    return redirect("/read?q="+post_name)
 
 
 @app.route("/upload_img",methods=["POST"])
@@ -208,6 +208,90 @@ def signup_post():
     return redirect("/loggin")
 
 
+########
+# USER #
+########
+@app.route("/user")
+def user():
+    user=request.args.get("user")
+    posts=r.lrange("lts-posts:"+"user:"+user, 0, -1)
+
+    res_posts=[]
+    for i in posts:
+        res_posts.append(i.decode().replace("post:",""))
+
+    return render_template("user.html",posts=posts)
+
+
+###########
+# COMMENT #
+###########
+@app.route("/comment",methods=["POST"])
+def comment():
+    post=request.args.get("post")
+    user=session["user"]
+    comment=request.form.get("comment")
+
+    r.lpush("comments-post:"+post,user+"-|-"+comment)
+
+    return "ok"
+
+@app.route("/read_comment")
+def read_comment():
+    post=request.args.get("post")
+
+    comments=r.lrange("comments-post:"+post, 0, -1)
+
+    res=[]
+
+    for i in comments:
+        res.append(i.decode())
+
+    return jsonify(comments=res)
+
+
+
+
+########
+# EDIT #
+########
+@app.route("/edit")
+def edit():
+    if "user" in session:
+        post_name=request.args.get("post")
+
+        post_by=r.hget("post:"+post_name, "by").decode()
+
+        if session["user"] == post_by:
+            des=r.hget("post:"+post_name, "description").decode()
+            post=r.hget("post:"+post_name, "post").decode()
+
+            return render_template("edit.html",post=post,des=des,name=post_name)
+
+        return "Error"
+
+    return "Error1"
+
+@app.route("/edit",methods=["POST"])
+def edit_post():
+    if "user" in session:
+        post_name=request.args.get("post")
+
+        post_by=r.hget("post:"+post_name, "by").decode()
+
+        if session["user"] == post_by:
+            new_post=request.form.get("post")
+            new_des=request.form.get("des")
+
+            r.hset("post:"+post_name, "post", new_post)
+            r.hset("post:"+post_name, "description", new_des)
+
+            return redirect("/read?q="+post_name)
+
+
+@app.route("/test")
+def test():
+    return render_template("test.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

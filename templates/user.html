@@ -2,11 +2,6 @@
 {% block body %}
 	<div class="container">
 
-		<div class="center">
-			<h1>Hello!</h1>
-		</div>
-
-		<a href="/logout">Log out</a>
 		<br>
 		<br>
 		<br>
@@ -17,13 +12,11 @@
 		<div>
 			{% for i in posts %}
 			<a href="#" class="card" id="link-{{ i }}">
-				<div>
-					<h2 class="card-title" id="title-{{ i }}">Title</h2>
-					
-				</div>
-			</a>
-			
-			<a href="/edit?post={{ i }}" style="float: left;">Edit</a>
+			<div>
+				<h2 class="card-title" id="title-{{ i }}">Title</h2>
+				
+			</div>
+		</a>
 
 		<script>
 			var PostCard = "{{ i }}";

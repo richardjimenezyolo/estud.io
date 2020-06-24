@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block body %}
+	<div class="container">
+		<a href="http://localhost:5000/read?q=Markdown%20Cheatsheet" target="blank">Markdown Cheat Sheet</a>
+			<form action="/edit?post={{ name }}" method="POST">
+				<p style="color: red;"> {{ msg }} </p>
+				<p style="font-size: 44px;font-family: lato;">Editing: {{ name }}</p>
+				<h1>Description:</h1>
+				<input type="text" name="des" class="input-text" placeholder="Post Description..." value="{{ des }}">
+				<br>
+				<h1>Post</h1>
+				<textarea name="post" id="text" cols="30" rows="10">{{ post }}</textarea>
+				<br>
+				<br>
+				<br>
+				<button class="button">Send</button>
+			</form>
+			<form id="img">
+				<input type="file" name="img">
+			</form>
+			<button class="button" onclick="UploadImg()">upload img</button>
+	</div>
+	<script src="/static/js/upload_img.js"></script>
+{% endblock body %}

@@ -146,7 +146,7 @@ ul{
 	width: 50%;
 }
 
-textarea{
+#text{
 	width: 75%;
 	height: 400px;
 }
@@ -180,14 +180,13 @@ form{
 
 .like-box{
 	position: fixed;
-	right: 0;
-	top: 50%;
+	top: 40%;
 }
 
 .like{
 	border: none;
 	color: var(--dark);
-	background: var(--bg);
+	background: rgba(0,0,0,0);
 
 }
 
@@ -206,6 +205,21 @@ form{
 	right: 3%;
 }
 
+#up:hover{
+	color: var(--blue);
+}
+
+.comment{
+	width: 50%;
+	background: white;
+
+	border-radius: 25px 0;
+	text-align: center;
+	border: 2px solid black;
+
+	margin: auto;
+}
+
 @media screen and (max-width: 600px){
 	#content{
 		margin-left: 0;
@@ -222,5 +236,9 @@ form{
 
 	.card{
 		width: 50%;
+	}
+	.like-box{
+		position: unset;
+		top: unset;
 	}
 }
