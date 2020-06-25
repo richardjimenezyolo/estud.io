@@ -52,11 +52,9 @@ function UploadImg () {
 		if (ajax.readyState == 4 && ajax.status == 200) {
 			var response = ajax.responseText;
 
-			var add = `\n\n<img src="https://estud-io.s3-us-west-1.amazonaws.com/estud-io/${response}" width="200" height="200">`
+			var add = `https://estud-io.s3-us-west-1.amazonaws.com/estud-io/${response}`
 
-			document.querySelector("#text").value += add
-
-			alert("Done")
+			alert(`Now just paste this url in the editor: ${add}`)
 		}
 	};
 	ajax.open("POST", "/upload_img", true);
