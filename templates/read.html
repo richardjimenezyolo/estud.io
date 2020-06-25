@@ -1,5 +1,15 @@
 {% extends 'base.html' %}
 {% block body %}
+  
+  <style>
+    .ce-toolbar{
+      display: none;
+    }
+    .cdx-input.cdx-simple-image__caption{
+      display: none;
+    }
+  </style>
+
   <a href="#" class="material-icons" id="up">keyboard_arrow_up</a>
   <script src="https://unpkg.com/showdown/dist/showdown.min.js"></script>
   <script src="static/js/read.js"></script>
@@ -7,7 +17,7 @@
     <div id="content">
       <div id="read"></div>
     </div>
-    <p>Wirtten by: <a href="/user?user={{ by }}">{{ by }}</a></p>
+    <p>Publicado Por: <a href="/user?user={{ by }}">{{ by }}</a></p>
   	<div class="like-box">
   		<button onclick="like('{{ post }}')" class="material-icons like">thumb_up</button>
   		{{ likes }}
@@ -17,7 +27,7 @@
 
 
       <form id="comment">
-        <h2>Please leave a comment:</h2>
+        <h2>Por Favor Deja un Comentario:</h2>
         <textarea name="comment" cols="50" rows="2" id="text2"></textarea>
         <br>
       </form>
@@ -29,10 +39,10 @@
       <br>
       <br>
 
-      <h2>Comments:</h2>
+      <h2>Comentarios:</h2>
 
       <div id="comments">
-        <button class="button" onclick="ReadComments('{{ post }}')">Read Comments</button>
+        <button class="button" onclick="ReadComments('{{ post }}')">Cargar Comentarios</button>
       </div>
 
 
@@ -48,4 +58,5 @@
   <script src="https://cdn.jsdelivr.net/npm/@editorjs/code"></script>
   <script src="https://cdn.jsdelivr.net/npm/@editorjs/underline@latest"></script>
   <script>read("{{ post }}")</script>
+
 {% endblock body %}
