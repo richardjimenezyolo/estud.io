@@ -51,7 +51,13 @@ function SendComment (post_name) {
             var response = this.response;
             console.log(response)
 
-            document.querySelector("#text2").value = ""
+            if (response == "Error"){
+                alert("You must sign in")
+            }
+            else{
+                document.querySelector("#text2").value = "";
+                ReadComments(post_name)
+            }
         }
     }
 }

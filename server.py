@@ -228,13 +228,16 @@ def user():
 ###########
 @app.route("/comment",methods=["POST"])
 def comment():
-    post=request.args.get("post")
-    user=session["user"]
-    comment=request.form.get("comment")
+    if "user" in session:
+        post=request.args.get("post")
+        user=session["user"]
+        comment=request.form.get("comment")
 
-    r.lpush("comments-post:"+post,user+"-|-"+comment)
+        r.lpush("comments-post:"+post,user+"-|-"+comment)
 
-    return "ok"
+        return "ok"
+
+    return "Error"
 
 @app.route("/read_comment")
 def read_comment():
