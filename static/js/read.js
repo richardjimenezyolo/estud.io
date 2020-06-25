@@ -20,6 +20,7 @@ function read(file) {
                         inlineToolbar: true,
                     },
                     raw: RawTool,
+                    code: CodeTool,
                 },
                 data: test
             });

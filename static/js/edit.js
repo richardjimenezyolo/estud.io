@@ -45,6 +45,7 @@ function load (file) {
                         inlineToolbar: true,
                     },
                     raw: RawTool,
+                    code: CodeTool,
                 },
                 data: test
             });

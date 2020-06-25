@@ -17,6 +17,7 @@ const editor = new EditorJS({
       inlineToolbar: true,
     },
     raw: RawTool,
+    code: CodeTool,
   }, 
 })
 
