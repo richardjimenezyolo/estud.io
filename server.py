@@ -104,13 +104,13 @@ def add():
 
 @app.route("/add_post",methods=["POST"])
 def upload_post():
+    post_name=request.args.get("name")
     data=request.data
 
     post_data=data.decode().split("-|-")
 
-    post_name=post_data[0]
-    post_des=post_data[1]
-    post=post_data[2]
+    post_des=post_data[0]
+    post=post_data[1]
 
     by=session["user"]
 
@@ -118,6 +118,8 @@ def upload_post():
     r.hset("post:"+post_name, "post", post)
     r.hset("post:"+post_name, "by", session["user"])
     r.hset("post:"+post_name, "pts", 0)
+
+    r.lpush("lts-posts:"+session["user"],"post:"+post_name)
 
     return "ok"
 
@@ -280,13 +282,29 @@ def edit_post():
         post_by=r.hget("post:"+post_name, "by").decode()
 
         if session["user"] == post_by:
-            new_post=request.form.get("post")
-            new_des=request.form.get("des")
+            # new_post=request.form.get("post")
+            # new_des=request.form.get("des")
 
-            r.hset("post:"+post_name, "post", new_post)
-            r.hset("post:"+post_name, "description", new_des)
+            # r.hset("post:"+post_name, "post", new_post)
+            # r.hset("post:"+post_name, "description", new_des)
 
-            return redirect("/read?q="+post_name)
+            # return redirect("/read?q="+post_name)
+
+
+
+            data=request.data
+
+            post_data=data.decode().split("-|-")
+
+            post_des=post_data[0]
+            post=post_data[1]
+
+            by=session["user"]
+
+            r.hset("post:"+post_name, "description", post_des)
+            r.hset("post:"+post_name, "post", post)
+
+            return "ok"
 
 
 @app.route("/test")

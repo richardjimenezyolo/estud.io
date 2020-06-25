@@ -27,17 +27,15 @@ function save () {
 		var des 	= document.querySelector("#des").value
 		var post 	  	= JSON.stringify(out)
 
-
-
-
 		var xhr = new XMLHttpRequest();
-		xhr.open("POST","add_post",true)
-		xhr.send(`${post_name}-|-${des}-|-${post}`)
+		xhr.open("POST",`/add_post?name=${post_name}`,true)
+		xhr.send(`${des}-|-${post}`)
 		xhr.onreadystatechange = function () {
 		    if (this.readyState == 4 && this.status == 200){
 		        var response = this.response;
-		        // document.body.innerHTML = response
-		        console.log(response)
+		        if (response == "ok"){
+		        	location.href = `/read?q=${post_name}`
+		        }
 		    }
 		}
 	})
