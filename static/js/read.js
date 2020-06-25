@@ -21,6 +21,7 @@ function read(file) {
                     },
                     raw: RawTool,
                     code: CodeTool,
+                    underline: Underline,
                 },
                 data: test
             });

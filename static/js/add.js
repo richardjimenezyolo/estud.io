@@ -18,6 +18,7 @@ const editor = new EditorJS({
     },
     raw: RawTool,
     code: CodeTool,
+    underline: Underline,
   }, 
 })
 
