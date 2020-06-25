@@ -4,7 +4,9 @@
   <script src="https://unpkg.com/showdown/dist/showdown.min.js"></script>
   <script src="static/js/read.js"></script>
   <div class="container">
-    <div id="content"></div>
+    <div id="content">
+      <div id="read"></div>
+    </div>
     <p>Wirtten by: <a href="/user?user={{ by }}">{{ by }}</a></p>
   	<div class="like-box">
   		<button onclick="like('{{ post }}')" class="material-icons like">thumb_up</button>
@@ -36,5 +38,12 @@
 
 
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/raw"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/checklist"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
   <script>read("{{ post }}")</script>
 {% endblock body %}

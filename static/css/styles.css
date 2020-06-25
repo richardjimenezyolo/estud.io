@@ -44,6 +44,7 @@ html,body{
 	background-color: var(--dark);
 	position: fixed;
 	top: 0;
+	z-index: 99;
 }
 
 .exp{
@@ -218,6 +219,10 @@ form{
 	border: 2px solid black;
 
 	margin: auto;
+}
+
+#editorjs{
+	background: white;
 }
 
 @media screen and (max-width: 600px){

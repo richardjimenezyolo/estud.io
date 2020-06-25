@@ -1,26 +1,29 @@
 {% extends 'base.html' %}
 {% block body %}
 	<div class="container">
-		<a href="http://localhost:5000/read?q=Markdown%20Cheatsheet" target="blank">Markdown Cheat Sheet</a>
-			<form action="/add_post" method="POST">
-				<p style="color: red;"> {{ msg }} </p>
-				<p style="font-size: 44px;font-family: lato;">Add:</p>
-				<h1>Post Name: </h1>
-				<input type="text" name="post-name" class="input-text" placeholder="Post Name...">
-				<h1>Description:</h1>
-				<input type="text" name="description" class="input-text" placeholder="Post Description...">
-				<br>
-				<h1>Post</h1>
-				<textarea name="post" id="text" cols="30" rows="10"></textarea>
-				<br>
-				<br>
-				<br>
-				<button class="button">Send</button>
-			</form>
-			<form id="img">
-				<input type="file" name="img">
-			</form>
-			<button class="button" onclick="UploadImg()">upload img</button>
+		<h1>Write a Post:</h1>
+		<div class="center">
+			<h2>Post Name:</h2>
+			<input type="text" class="input-text" id="name" placeholder="Post Name...">
+			<br>
+			<br>
+			<h2>Post Description:</h2>
+			<input type="text" class="input-text" id="des" placeholder="Post Description...">
+			<br>
+			<br>
+			<br>
+		</div>
+		<div id="editorjs"></div>
+		<br>
+		<div class="center">
+			<button class="button" onclick="save()">Save</button>
+		</div>
 	</div>
-	<script src="/static/js/upload_img.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@editorjs/raw"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@editorjs/checklist"></script>
+	<script src="/static/js/add.js"></script>
 {% endblock body %}

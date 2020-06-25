@@ -104,25 +104,22 @@ def add():
 
 @app.route("/add_post",methods=["POST"])
 def upload_post():
-    post_name=request.form.get("post-name")
-    description=request.form.get("description")
-    post=request.form.get("post")
+    data=request.data
 
+    post_data=data.decode().split("-|-")
 
+    post_name=post_data[0]
+    post_des=post_data[1]
+    post=post_data[2]
 
-    db=get_db()
+    by=session["user"]
 
-    if "post:"+post_name in db:
-        return render_template("add.html",msg="Post Name Already taken!")
-
+    r.hset("post:"+post_name, "description", post_des)
     r.hset("post:"+post_name, "post", post)
-    r.hset("post:"+post_name, "description", description)
     r.hset("post:"+post_name, "by", session["user"])
     r.hset("post:"+post_name, "pts", 0)
 
-    r.lpush("lts-posts:"+session["user"],"post:"+post_name)
-
-    return redirect("/read?q="+post_name)
+    return "ok"
 
 
 @app.route("/upload_img",methods=["POST"])
