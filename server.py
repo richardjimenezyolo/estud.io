@@ -102,9 +102,16 @@ def add():
 
     return redirect("/loggin")
 
+
 @app.route("/add_post",methods=["POST"])
 def upload_post():
     post_name=request.args.get("name")
+    
+    db=get_db()
+
+    if "post:"+post_name in db:
+        return "There is another post with that name"
+
     data=request.data
 
     post_data=data.decode().split("-|-")

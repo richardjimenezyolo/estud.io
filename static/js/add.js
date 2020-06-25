@@ -33,8 +33,12 @@ function save () {
 		xhr.onreadystatechange = function () {
 		    if (this.readyState == 4 && this.status == 200){
 		        var response = this.response;
+		        console.log(response)
 		        if (response == "ok"){
 		        	location.href = `/read?q=${post_name}`
+		        }
+		        else {
+		        	alert(response)
 		        }
 		    }
 		}

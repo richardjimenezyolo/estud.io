@@ -16,6 +16,9 @@ function save () {
             var response = this.response;
             // document.body.innerHTML = response
             console.log(response)
+            if (response == "ok"){
+                    location.href = `/read?q=${post_name}`
+                }
         }
     }
   })
