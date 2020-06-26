@@ -7,7 +7,7 @@ function read(file) {
         if (this.readyState == 4 && this.status == 200) {
             var response = this.responseText;
 
-            var test = JSON.parse(response)
+            var post = JSON.parse(response)
 
             const editor = new EditorJS({
                 holder: "read",
@@ -23,7 +23,7 @@ function read(file) {
                     code: CodeTool,
                     underline: Underline,
                 },
-                data: test
+                data: post
             });
         }
     };
@@ -52,7 +52,13 @@ function dislike(post) {
 }
 
 function SendComment(post_name) {
-    var form = document.querySelector("#comment")
+
+    var textarea = document.querySelector("#text2")
+
+    if (textarea.value == ""){
+        console.log("none")
+    }else{
+        var form = document.querySelector("#comment")
 
     var data = new FormData(form)
 
@@ -72,6 +78,9 @@ function SendComment(post_name) {
             }
         }
     }
+    }
+
+    
 }
 
 function ReadComments(post) {
