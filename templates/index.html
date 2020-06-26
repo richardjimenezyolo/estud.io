@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block body %}
+	<script src="/static/js/index.js"></script>
 	<div class="banner">
 		<a href="/" id="header">Estud.io</a>
 	</div>
@@ -14,24 +15,7 @@
 		</a>
 
 		<script>
-			var PostCard = "{{ i }}";
-
-			var card = PostCard.split("|")
-
-			// Card Name
-
-			var name = card[0].replace("post:","")
-
-			document.getElementById("title-{{ i }}").innerHTML = name
-
-			// Description
-
-			var des = card[1]
-			document.getElementById("des-{{ i }}").innerHTML = des
-
-			// Card Link
-
-			document.getElementById("link-{{ i }}").href = "/read?q="+name
+			LoadCard("{{ i }}")
 		</script>
 		{% endfor %}
 	</div>

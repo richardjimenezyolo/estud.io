@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block body %}
+		<script src="/static/js/profile.js"></script>
 	<div class="container">
 
 		<div class="center">
@@ -26,19 +27,7 @@
 			<a href="/edit?post={{ i }}" style="float: left;">Edit</a>
 
 		<script>
-			var PostCard = "{{ i }}";
-
-			var card = PostCard.split("|")
-
-			// Card Name
-
-			var name = card[0].replace("post:","")
-
-			document.getElementById("title-{{ i }}").innerHTML = name
-
-			// Card Link
-
-			document.getElementById("link-{{ i }}").href = "/read?q="+name
+			LoadCard("{{ i }}")
 		</script>
 		{% endfor %}
 		</div>
