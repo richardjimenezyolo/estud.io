@@ -315,9 +315,9 @@ def edit_post():
             return "ok"
 
 
-@app.route("/test")
+@app.route("/about")
 def test():
-    return render_template("test.html")
+    return render_template("about.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

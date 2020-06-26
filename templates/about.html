@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% block body %}
+  <style>
+    .ce-toolbar{
+      display: none;
+    }
+    .cdx-input.cdx-simple-image__caption{
+      display: none;
+    }
+  </style>
+	<div id="read"></div>
+	<script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@editorjs/raw"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@editorjs/checklist"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@editorjs/code"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@editorjs/underline@latest"></script>
+	<script>
+		var text = {
+  "time": 1593153222427,
+  "blocks": [
+    {
+      "type": "header",
+      "data": {
+        "text": "¿Qué es Estud.io?",
+        "level": 2
+      }
+    },
+    {
+      "type": "image",
+      "data": {
+        "url": "https://estud-io.s3-us-west-1.amazonaws.com/estud-io/0.5195168930371303.jpg",
+        "caption": "",
+        "withBorder": true,
+        "withBackground": true,
+        "stretched": false
+      }
+    },
+    {
+      "type": "paragraph",
+      "data": {
+        "text": "Estud.io es una plataforma de educación online donde los estudiantes tendrán la oportunidad de ayudarse entre ellos y serán evaluados con un sistema de puntos que serviría como recomendación para que los estudiantes puedan aplicar para becas universitarias. Estud.io les da la oportunidad a personas que por cualquier razón se ven forzadas a abandonar métodos de educación mas tradicionales, pero no substituye la educación tradicional ya que esta se estaría complementando con Estud.io."
+      }
+    },
+    {
+      "type": "header",
+      "data": {
+        "text": "¿Cuál es la diferencia entre Estud.io y las demas plataformas de educación online?",
+        "level": 2
+      }
+    },
+    {
+      "type": "paragraph",
+      "data": {
+        "text": "La diferencia entre Estud.io y otras plataformas como KhanAcademy o Platzi es que estud.io será enfocada enconocimientos mas detallados y prácticos de materias desecundaria, pre universitarias y universitarias, adaptadas a las necesidades del estudiante mientras mantiene un costo completamente gratis."
+      }
+    },
+    {
+      "type": "paragraph",
+      "data": {
+        "text": "La Fundación para la Educación Superior y el Desarrollo(FEDESARROLLO) en sus informes sobre salud, educación y desempleo, afirma que uno de los factores determinantes del desarrollo económico y social es la educación, y, por lo tanto, al aumentar el nivel de educación se genera un crecimiento económico y esa esnuestra visión, cambiar a la republica Dominicana.Nuestra misión es la transformación de la economíadominicana de estar basada en el turismo y la exportación de productos agrícolas, a una economía exportadora de talento humano altamente capacitados."
+      }
+    },
+    {
+      "type": "header",
+      "data": {
+        "text": "Nuestra estrategias ",
+        "level": 2
+      }
+    },
+    {
+      "type": "paragraph",
+      "data": {
+        "text": "Las estrategias a utilizar para conseguir nuestro objetivo consistirá en establecer una estrecha relación con el Ministerio de Educación Superior, ciencia y Tecnología(MESCYT) para facilitar las becas para las universidades y le servirá a la MESCYT como una forma para corroborar las destrezas de los estudiantes facilitándole así el procesode becas. Estud.io satisficiera la necesidad de educación de calidad sin importar su extracto social, raza, religión u orientaciónsexual. Como seguro te habrás dado cuenta nuestro principal objetivo es que la plataforma sea gratis, para eso dispondremos de donaciones y publicidad NO intrusivadentro de la plataforma"
+      }
+    }
+  ],
+  "version": "2.18.0"
+}
+		const editor = new EditorJS({
+			holder: "read",
+			tools: { 
+			    image: SimpleImage,
+			    header: Header, 
+			    list: List,
+			    checklist: {
+			      class: Checklist,
+			      inlineToolbar: true,
+			    },
+			    raw: RawTool,
+			    code: CodeTool,
+			    underline: Underline,
+			  },
+			  data: text 
+		})
+
+		function save () {
+			editor.save().then(out =>{
+				console.log(out)
+			})
+		}
+	</script>
+{% endblock body %}
