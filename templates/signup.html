@@ -1,20 +1,20 @@
 {% extends 'base.html' %}
 {% block body %}
 	<form action="/signup" method="POST">
-		<a href="/loggin">Loggin</a>
+		<a href="/loggin">Iniciar sesión</a>
 		<br>
 		<p style="color: red;">{{ msg }}</p>
-		<h1>Sign Up: </h1>
+		<h1>Regístrate: </h1>
 		<br>
 		<br>
-		<h2>User Name</h2>
+		<h2>Nombre de Usuario</h2>
 		<input type="text" class="input-text" name="name" placeholder="User Name...">
 		<br>
-		<h2>Password:</h2>
+		<h2>Contraseña:</h2>
 		<input type="password" class="input-text" name="pwd" placeholder="Password...">
 		<br>
 		<br>
 		<br>
-		<button class="button">Sign Up</button>
+		<button class="button">Regístrate</button>
 	</form>
 {% endblock body %}
