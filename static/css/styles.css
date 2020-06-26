@@ -166,10 +166,10 @@ ul{
 	cursor: pointer;
 }
 
-#content{
+/*#content{
 	margin-left: 20%;
 	margin-right: 20%;
-}
+}*/
 
 form{
 	text-align: center;
@@ -227,10 +227,10 @@ form{
 }
 
 @media screen and (max-width: 600px){
-	#content{
+/*	#content{
 		margin-left: 0;
 		margin-right: 0;
-	}
+	}*/
 	#header{
 		left: unset;
 		position: unset;
