@@ -223,10 +223,11 @@ def user():
     posts=r.lrange("lts-posts:"+"user:"+user, 0, -1)
 
     res_posts=[]
-    for i in posts:
-        res_posts.append(i.decode().replace("post:",""))
 
-    return render_template("user.html",posts=posts)
+    for i in posts:
+        res_posts.append(i.decode())
+
+    return render_template("user.html",posts=res_posts,user=user)
 
 
 ###########
