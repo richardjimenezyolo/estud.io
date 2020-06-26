@@ -182,6 +182,7 @@ form{
 .like-box{
 	position: fixed;
 	top: 40%;
+	z-index: 199;
 }
 
 .like{
