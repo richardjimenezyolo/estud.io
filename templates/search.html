@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block body %}
+	<script src="/static/js/search.js"></script>
+	<script src="/static/js/profile.js"></script>
+	<div class="center">
+		<h1>Busca Algo</h1>
+		<input type="text" class="input-text" placeholder="Search..." onkeyup="Search(this.value)">
+		<br>
+		<br>
+		<br>
+		<div id="results"></div>
+	</div>
+{% endblock body %}

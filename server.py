@@ -319,5 +319,35 @@ def edit_post():
 def test():
     return render_template("about.html")
 
+
+##########
+# SEARCH #
+##########
+@app.route("/search")
+def search_page():
+    return render_template("search.html")
+
+
+@app.route("/SeachArticle")
+def search():
+    q=request.args.get("q")
+
+    db=get_db()
+
+    lts=[]
+
+    for i in db:
+        if r.type(i) == b'hash':
+            if "post:" in i:
+                lts.append(i)
+
+
+    res=[i for i in lts if q.lower() in i.lower()]
+
+    return jsonify(res=res)
+
+
+
+
 if __name__ == "__main__":
     app.run(debug=True)
