@@ -1,5 +1,7 @@
 # estud.io
 
+## ¿Qué es Estud.io?
+
 Estud.io es una plataforma de educación online donde los
 estudiantes tendrán la oportunidad de ayudarse entre ellos
 y serán evaluados con un sistema de puntos que serviría
@@ -10,6 +12,9 @@ razón se ven forzadas a abandonar métodos de educación
 mas tradicionales, pero no substituye la educación
 tradicional ya que esta se estaría complementando con
 Estud.io.
+
+
+## ¿Cuál es la diferencia entre Estud.io y las demas plataformas de educación online?
 
 La diferencia entre Estud.io y otras plataformas como Khan
 Academy o Platzi es que estud.io será enfocada en
@@ -29,6 +34,9 @@ Nuestra misión es la transformación de la economía
 dominicana de estar basada en el turismo y la exportación
 de productos agrícolas, a una economía exportadora de
 talento humano altamente capacitados.
+
+
+## Nuestra estrategias 
 
 Las estrategias a utilizar para conseguir nuestro objetivo
 consistirán en establecer una estrecha relación con el
