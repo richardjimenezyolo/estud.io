@@ -5,16 +5,16 @@ function LoadCard(post) {
 
     // Card Name
 
-    var name = card[0].replace("post:", "")
+    var name = card[1].replace("post:", "")
 
     document.getElementById(`title-${post}`).innerHTML = name
 
     // Description
 
-    var des = card[1]
+    var des = card[2]
     document.getElementById(`des-${post}`).innerHTML = des
 
     // Card Link
 
-    document.getElementById(`link-${post}`).href = "/read?q=" + name
+    document.getElementById(`link-${post}`).href = "/read?q=" + card[0].replace("post:", "")
 }

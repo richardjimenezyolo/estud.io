@@ -32,11 +32,18 @@ def get_db():
 @app.route("/")
 def index():
     test=get_db()
+    # res=[]
+    # for i in test:
+    #     if "post:" in i:
+    #         if len(i) != len("post:") and r.type(i) == b'hash':
+    #             res.append(i+"|"+str(r.hget(i,"description").decode()))
+
     res=[]
+
     for i in test:
-        if "post:" in i:
-            if len(i) != len("post:") and r.type(i) == b'hash':
-                res.append(i+"|"+str(r.hget(i,"description").decode()))
+    	if "post:" in i:
+    		if len(i) != len("post:")  and r.type(i) == b'hash':
+    			res.append(i+"|"+str(r.hget(i,"name").decode())+"|"+str(r.hget(i,"description").decode()))
 
     return render_template("index.html",list=res)
 
@@ -105,7 +112,8 @@ def add():
 
 @app.route("/add_post",methods=["POST"])
 def upload_post():
-    post_name=request.args.get("name")
+    name=request.args.get("name")
+    post_name=str(random.random())
     
     db=get_db()
 
@@ -114,6 +122,7 @@ def upload_post():
 
     data=request.data
 
+
     post_data=data.decode().split("-|-")
 
     post_des=post_data[0]
@@ -121,6 +130,7 @@ def upload_post():
 
     by=session["user"]
 
+    r.hset("post:"+post_name, "name", name)
     r.hset("post:"+post_name, "description", post_des)
     r.hset("post:"+post_name, "post", post)
     r.hset("post:"+post_name, "by", session["user"])
@@ -154,7 +164,7 @@ def profile():
         res_posts=[]
 
         for i in posts:
-            res_posts.append(i.decode().replace("post:",""))
+            res_posts.append(str(r.hget(i,"name").decode())+"|"+i.decode().replace("post:",""))
 
         return render_template("profile.html",posts=res_posts)
 
@@ -342,7 +352,10 @@ def search():
                 lts.append(i)
 
 
-    res=[i for i in lts if q.lower() in i.lower()]
+    lts2=[]
+    for i in lts:
+    	lts2.append(str(r.hget(i,"name").decode())+"|"+i)
+    res=[i for i in lts2 if q.lower() in i.lower()]
 
     return jsonify(res=res)
 
