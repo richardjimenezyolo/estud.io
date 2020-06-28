@@ -19,7 +19,10 @@ const editor = new EditorJS({
     raw: RawTool,
     code: CodeTool,
     underline: Underline,
-  }, 
+    table: {
+      class: Table,
+    }
+  },
 })
 
 function save () {
@@ -35,9 +38,9 @@ function save () {
 		xhr.onreadystatechange = function () {
 		    if (this.readyState == 4 && this.status == 200){
 		        var response = this.response;
-		        console.log(response)
-		        if (response == "ok"){
-		        	location.href = `/read?q=${post_name}`
+		        var res 	 = response.split("|")
+		        if (res[0] == "ok"){
+		        	location.href = `/read?q=${res[1]}`
 		        }
 		        else {
 		        	alert(response)

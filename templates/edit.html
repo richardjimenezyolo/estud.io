@@ -2,7 +2,7 @@
 {% block body %}
 	<div class="container">
 		<div class="center">
-			<h1>Editing: {{ name }}</h1>
+			<h1>Editing: {{ real_name }}</h1>
 			<br>
 			<br>
 			<h2>Post Description:</h2>
@@ -24,6 +24,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/@editorjs/checklist"></script>
 	<script src="https://cdn.jsdelivr.net/npm/@editorjs/code"></script>
 	<script src="https://cdn.jsdelivr.net/npm/@editorjs/underline@latest"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@editorjs/table"></script>
 	<script src="/static/js/edit.js"></script>
 	<script>
 		load(`{{ name }}`)

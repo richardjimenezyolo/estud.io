@@ -22,6 +22,9 @@ function read(file) {
                     raw: RawTool,
                     code: CodeTool,
                     underline: Underline,
+                    table: {
+                      class: Table,
+                    }
                 },
                 data: post
             });

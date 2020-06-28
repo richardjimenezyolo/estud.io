@@ -138,7 +138,7 @@ def upload_post():
 
     r.lpush("lts-posts:"+session["user"],"post:"+post_name)
 
-    return "ok"
+    return "ok"+"|"+str(post_name)
 
 
 @app.route("/upload_img",methods=["POST"])
@@ -285,8 +285,9 @@ def edit():
         if session["user"] == post_by:
             des=r.hget("post:"+post_name, "description").decode()
             post=r.hget("post:"+post_name, "post").decode()
+            real_name=r.hget("post:"+post_name, "name").decode()
 
-            return render_template("edit.html",post=post,des=des,name=post_name)
+            return render_template("edit.html",post=post,des=des,name=post_name,real_name=real_name)
 
         return "Error"
 

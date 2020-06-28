@@ -47,6 +47,9 @@ function load (file) {
                     raw: RawTool,
                     code: CodeTool,
                     underline: Underline,
+                    table: {
+                      class: Table,
+                    }
                 },
                 data: test
             });
