@@ -7,16 +7,22 @@
 	<div class="container">
 		<h1>Artículos:</h1>
 		{% for i in list %}
-		<a href="#" class="card" id="link-{{ i }}">
+
+		{% if i != "" %}
+
+		<a href="#" class="card" id="{{ i }}">
 			<div>
-				<h2 class="card-title" id="title-{{ i }}">Title</h2>
-				<p id="des-{{ i }}"></p>
+				<h2 class="card-title" id="{{ i }}">Title</h2>
+				<p id="{{ i }}"></p>
 			</div>
 		</a>
 
 		<script>
-			LoadCard("{{ i }}")
+			// LoadCard("{{ i }}")
+			load2("{{ i }}")
+			console.log("{{ i }}")
 		</script>
+		{% endif %}
 		{% endfor %}
 	</div>
 {% endblock body %}

@@ -31,21 +31,18 @@ def get_db():
 #########
 @app.route("/")
 def index():
-    test=get_db()
-    # res=[]
-    # for i in test:
-    #     if "post:" in i:
-    #         if len(i) != len("post:") and r.type(i) == b'hash':
-    #             res.append(i+"|"+str(r.hget(i,"description").decode()))
-
-    res=[]
-
-    for i in test:
-    	if "post:" in i:
-    		if len(i) != len("post:")  and r.type(i) == b'hash':
-    			res.append(i+"|"+str(r.hget(i,"name").decode())+"|"+str(r.hget(i,"description").decode()))
-
+    db_out=get_db()
+    res=[i for i in db_out if "post" in i if r.type(i) == b'hash']
     return render_template("index.html",list=res)
+
+@app.route("/index_api")
+def index_api():
+    id=request.args.get("id")
+    
+    post_name=r.hget(id, "name").decode()
+    post_decription=r.hget(id, "description").decode()
+
+    return jsonify(name=post_name,des=post_decription)
 
 
 ########
