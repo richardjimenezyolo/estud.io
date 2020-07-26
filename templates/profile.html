@@ -4,7 +4,7 @@
 	<div class="container">
 
 		<div class="center">
-			<h1>Hello!</h1>
+			<h1>Hello! {{ user }}</h1>
 		</div>
 
 		<a href="/logout">Log out</a>
@@ -24,7 +24,9 @@
 				</div>
 			</a>
 			
-			<a href="#" id="{{ i }}" style="float: left;">Edit</a>
+			<a href="#" id="{{ i }}" style="float: left;" class="material-icons">edit</a>
+
+			<a href="#" id="{{ i }}" style="float: left;" class="material-icons">delete</a>
 
 		<script>
 			LoadCard("{{ i }}")

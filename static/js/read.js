@@ -1,3 +1,28 @@
+const editor = new EditorJS({
+    holder: "read",
+    tools: {
+        image: SimpleImage,
+        header: Header,
+        list: List,
+        checklist: {
+            class: Checklist,
+            inlineToolbar: true,
+        },
+        raw: RawTool,
+        code: CodeTool,
+        underline: Underline,
+        table: {
+            class: Table,
+        },
+        upload: {
+            class: UploadImage,
+            config: {
+                server: `/upload_img` // Here you can write your backend's url
+            }
+        }
+    }
+});
+
 function read(file) {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", `/read_file?q=${file}`, true);
@@ -9,25 +34,10 @@ function read(file) {
 
             var post = JSON.parse(response)
 
-            const editor = new EditorJS({
-                holder: "read",
-                tools: {
-                    image: SimpleImage,
-                    header: Header,
-                    list: List,
-                    checklist: {
-                        class: Checklist,
-                        inlineToolbar: true,
-                    },
-                    raw: RawTool,
-                    code: CodeTool,
-                    underline: Underline,
-                    table: {
-                      class: Table,
-                    }
-                },
-                data: post
-            });
+            setTimeout(_ =>{
+                editor.render(post)
+            },2000)
+
         }
     };
 }
@@ -58,32 +68,32 @@ function SendComment(post_name) {
 
     var textarea = document.querySelector("#text2")
 
-    if (textarea.value == ""){
+    if (textarea.value == "") {
         console.log("none")
-    }else{
+    } else {
         var form = document.querySelector("#comment")
 
-    var data = new FormData(form)
+        var data = new FormData(form)
 
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", `/comment?post=${post_name}`, true)
-    xhr.send(data)
-    xhr.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            var response = this.response;
-            console.log(response)
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", `/comment?post=${post_name}`, true)
+        xhr.send(data)
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var response = this.response;
+                console.log(response)
 
-            if (response == "Error") {
-                alert("You must sign in")
-            } else {
-                document.querySelector("#text2").value = "";
-                ReadComments(post_name)
+                if (response == "Error") {
+                    alert("You must sign in")
+                } else {
+                    document.querySelector("#text2").value = "";
+                    ReadComments(post_name)
+                }
             }
         }
     }
-    }
 
-    
+
 }
 
 function ReadComments(post) {

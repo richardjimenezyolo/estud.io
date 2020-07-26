@@ -163,8 +163,7 @@ def profile():
         for i in posts:
             res_posts.append(str(r.hget(i,"name").decode())+"|"+i.decode().replace("post:",""))
 
-        return render_template("profile.html",posts=res_posts)
-
+        return render_template("profile.html",posts=res_posts,user=session["user"].replace("user:",""))
 
     return redirect("/loggin")
 
